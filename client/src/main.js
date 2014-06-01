@@ -67,6 +67,7 @@ function Sourcr () {
 	}
 
 	function reset () {
+		page = 1;
 		$table.html('');
 		fetch();
 	}
