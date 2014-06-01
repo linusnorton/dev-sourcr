@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dev Sourcr</title>
+  </head>
+  <body>
+    <h1>Top <input name="language" data-input="language" value="JavaScript" /> developers in <input name="location" data-input="location" value="London" /><button data-role="search">Search</button></h1>
+    <table data-role="results"/>
+
+    <script>window.githubToken = "{{token}}"; </script>
+    <script src="./lib/jquery.js"> </script>
+    <script src="./lib/handlebars.js"> </script>
+    <script src="./lib/fun.js"> </script>
+    <script src="./src/main.js"> </script>
+    {% raw %}
+    <script id="person-placeholder" type="text/x-handlebars-template">
+      <tr>
+        <td><a href="{{html_url}}"><img width="120" src="{{avatar_url}}"/></a></td>
+        <td data-id="{{login}}">
+          <a href="{{html_url}}">{{login}}</a><br/>
+          Fetching details...
+        </td>
+      </tr>
+    </script>
+    <script id="person-details" type="text/x-handlebars-template">
+        {{name}} <a href="{{html_url}}">{{login}}</a><br/>
+        {{#if company}}Works at: {{company}}, {{/if}}
+        {{#if email}} <a href="mailto:{{email}}">{{email}}</a>,{{/if}} 
+        {{#if blog}} <a href="//{{blog}}">Website</a>{{/if}} 
+    </script>
+    {% endraw %}
+  </body>
+</html>
