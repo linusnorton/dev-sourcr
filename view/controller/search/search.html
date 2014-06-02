@@ -5,7 +5,7 @@
   <div class="container">
     <h2>Top <input name="language" data-input="language" value="JavaScript" /> developers in <input name="location" data-input="location" value="London" /><button data-role="search">Search</button></h2>
 
-    <table class="table table-striped table-bordered" data-role="results"></table>
+    <table class="table table-striped" data-role="results"></table>
   </div>
 {% endblock %}
 
@@ -18,7 +18,7 @@
   {% raw %}
   <script id="person-placeholder" type="text/x-handlebars-template">
     <tr>
-      <td><a href="{{html_url}}"><img width="120" src="{{avatar_url}}"/></a></td>
+      <td><a href="{{html_url}}"><img width="140" src="{{avatar_url}}"/></a></td>
       <td data-id="{{login}}">
         <a href="{{html_url}}">{{login}}</a><br/>
         Fetching details...
@@ -26,7 +26,7 @@
     </tr>
   </script>
   <script id="person-details" type="text/x-handlebars-template">
-      <h3>{{name}} (<a href="{{html_url}}">{{login}}</a>)</h3>
+      <h3 style="margin-top: 0px">{{name}} (<a href="{{html_url}}">{{login}}</a>)</h3>
       {{#if company}}Works at: {{company}}<br/>{{/if}}
       {{#if email}}Email: <a href="mailto:{{email}}">{{email}}</a><br/>{{/if}} 
       {{#if blog}}Website: <a href="{{blog}}">{{blog}}</a><br/>{{/if}} 
