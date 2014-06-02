@@ -19,17 +19,17 @@
   <script id="person-placeholder" type="text/x-handlebars-template">
     <tr>
       <td><a href="{{html_url}}"><img width="140" src="{{avatar_url}}"/></a></td>
-      <td data-id="{{login}}">
+      <td style="vertical-align: top" data-id="{{login}}">
         <a href="{{html_url}}">{{login}}</a><br/>
         Fetching details...
       </td>
     </tr>
   </script>
   <script id="person-details" type="text/x-handlebars-template">
-      <h3 style="margin-top: 0px">{{name}} (<a href="{{html_url}}">{{login}}</a>)</h3>
+      <h3>{{name}} (<a href="{{html_url}}">{{login}}</a>)</h3>
       {{#if company}}Works at: {{company}}<br/>{{/if}}
       {{#if email}}Email: <a href="mailto:{{email}}">{{email}}</a><br/>{{/if}} 
-      {{#if blog}}Website: <a href="{{blog}}">{{blog}}</a><br/>{{/if}} 
+      {{#if blog}}Website: <a href="{{blog}}">{{blog}}</a>{{/if}} 
   </script>
   {% endraw %}
 {% endblock %}
