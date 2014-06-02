@@ -5,7 +5,7 @@
   <div class="container">
     <h2>Top <input name="language" data-input="language" value="JavaScript" /> developers in <input name="location" data-input="location" value="London" /><button data-role="search">Search</button></h2>
 
-    <table data-role="results"></table>
+    <table class="table table-striped table-bordered" data-role="results"></table>
   </div>
 {% endblock %}
 
@@ -27,9 +27,9 @@
   </script>
   <script id="person-details" type="text/x-handlebars-template">
       <h3>{{name}} (<a href="{{html_url}}">{{login}}</a>)</h3>
-      {{#if company}}<p>Works at: {{company}}</p>{{/if}}
-      {{#if email}}<p>Email: <a href="mailto:{{email}}">{{email}}</a></p>{{/if}} 
-      {{#if blog}}<p>Website: <a href="{{blog}}">{{blog}}</a></p>{{/if}} 
+      {{#if company}}Works at: {{company}}<br/>{{/if}}
+      {{#if email}}Email: <a href="mailto:{{email}}">{{email}}</a><br/>{{/if}} 
+      {{#if blog}}Website: <a href="{{blog}}">{{blog}}</a><br/>{{/if}} 
   </script>
   {% endraw %}
 {% endblock %}
