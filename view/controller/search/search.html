@@ -26,10 +26,10 @@
     </tr>
   </script>
   <script id="person-details" type="text/x-handlebars-template">
-      {{name}} <a href="{{html_url}}">{{login}}</a><br/>
-      {{#if company}}Works at: {{company}}, {{/if}}
-      {{#if email}} <a href="mailto:{{email}}">{{email}}</a>,{{/if}} 
-      {{#if blog}} <a href="{{blog}}">Website</a>{{/if}} 
+      <h3>{{name}} (<a href="{{html_url}}">{{login}}</a>)</h3>
+      {{#if company}}<p>Works at: {{company}}</p>{{/if}}
+      {{#if email}}<p>Email: <a href="mailto:{{email}}">{{email}}</a></p>{{/if}} 
+      {{#if blog}}<p>Website: <a href="{{blog}}">{{blog}}</a></p>{{/if}} 
   </script>
   {% endraw %}
 {% endblock %}
