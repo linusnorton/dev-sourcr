@@ -11,7 +11,7 @@ function IndexController () {
     function run (req, res) {
         req.session.state = Math.random() + '';
 
-        res.render('index/index.html', {
+        res.render('controller/index/index.html', {
             oAuthState: req.session.state
         });
     }

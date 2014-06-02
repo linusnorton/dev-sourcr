@@ -13,7 +13,7 @@ function SearchController () {
             res.redirect('/');
         }
 
-        res.render('search/search.html', {
+        res.render('controller/search/search.html', {
             token: req.session.token
         });
     }

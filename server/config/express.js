@@ -14,7 +14,7 @@ function setupExpress (app) {
     app.set('port', process.env.PORT || 8011);
     app.use(express.static(__dirname + '/../../client'));
 
-    nunjucks.configure(__dirname + '/../../view/controller/', {
+    nunjucks.configure(__dirname + '/../../view/', {
         autoescape: true,
         express: app
     });
