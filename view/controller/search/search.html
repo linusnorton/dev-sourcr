@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block script %}
-  {% parent %}
+  {{ super() }}
   <script>window.githubToken = "{{token}}"; </script>
   <script src="/lib/handlebars.js"> </script>
   <script src="/lib/fun.js"> </script>
