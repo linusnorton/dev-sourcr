@@ -5,6 +5,10 @@
 
   <table data-role="results"/>
 
+{% endblock %}
+
+{% block script %}
+  {% parent %}
   <script>window.githubToken = "{{token}}"; </script>
   <script src="/lib/handlebars.js"> </script>
   <script src="/lib/fun.js"> </script>
