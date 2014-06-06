@@ -1,10 +1,41 @@
 {% extends "common/base.html" %}
 
 {% block content %}
-  
+  <nav class="navbar navbar-default navbar-fixed-top " role="navigation">
   <div class="container">
-    <h2>Top <input name="language" data-input="language" value="JavaScript" /> developers in <input name="location" data-input="location" value="London" /><button data-role="search">Search</button></h2>
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Search</a>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <form style="margin-left: 50px;" class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+            <label for="language">Find</label>
+            <input type="text" class="form-control" id="language" name="language" data-input="language" value="JavaScript"/>
+            <label for="location">developers in</label>
+            <input type="text" class="form-control" id="location" name="location" data-input="location" value="London"/>
+          </div>
+          <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+        <form class="navbar-form navbar-right" role="export">
+          <button type="submit" class="btn btn-danger">Export</button>
+        </form>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </div>
+  </nav>
 
+
+  <div class="container">
+    <br/><br/>
+    <br/><br/>
     <table class="table table-striped" data-role="results"></table>
   </div>
 {% endblock %}
