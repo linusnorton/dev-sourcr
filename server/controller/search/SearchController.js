@@ -9,9 +9,9 @@ function SearchController () {
      * @param {Response} res
      */
     function run (req, res) {
-        // if (!req.session.token) {
-        //     res.redirect('/');
-        // }
+        if (!req.session.token) {
+            res.redirect('/');
+        }
 
         res.render('controller/search/search.html', {
             token: req.session.token
