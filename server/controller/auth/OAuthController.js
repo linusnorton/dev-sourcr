@@ -20,8 +20,8 @@ function OAuthController () {
         request
             .post('https://github.com/login/oauth/access_token')
             .send({
-                client_id: 'a362e6a255a45c5e554a',
-                client_secret: 'c003f892c3c8e97c4ffd65ced85b7e2377673090',
+                client_id: process.env.CLIENT_ID,
+                client_secret: process.env.CLIENT_SECRET,
                 code: req.param('code')
             })
             .end(function (err, data) {

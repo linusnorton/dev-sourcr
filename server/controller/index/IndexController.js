@@ -12,7 +12,8 @@ function IndexController () {
         req.session.state = Math.random() + '';
 
         res.render('controller/index/index.html', {
-            oAuthState: req.session.state
+            oAuthState: req.session.state,
+            clientId: process.env.CLIENT_ID
         });
     }
 
