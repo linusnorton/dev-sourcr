@@ -12,7 +12,7 @@ var express = require('express'),
  */
 function setupExpress (app) {
     app.set('port', process.env.PORT || 8011);
-    app.use(express.static(__dirname + '/../../client'));
+    app.use(express.static(__dirname + '/../../public'));
 
     nunjucks.configure(__dirname + '/../../view/', {
         autoescape: true,

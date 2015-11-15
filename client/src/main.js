@@ -1,3 +1,5 @@
+import fun from "fun-js";
+
 $(function() {  
     fun.import({ under: window });
 
@@ -64,7 +66,7 @@ function Sourcr () {
         getItems = pluck('items'),
         storeResults = curry(map, storeResult),
         renderResults = compose(renderTable, concat, buildRows, storeResults, getItems),
-        fetchPeopleDetails = curry(forEach, fetchPersonDetails),
+        fetchPeopleDetails = (people) => people.forEach(fetchPersonDetails),
         fetchMoreDetails = compose(fetchPeopleDetails, getItems);
 
     function fetchPersonDetails (person) {

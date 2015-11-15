@@ -20,12 +20,14 @@
       "url": "https://github.com/linusnorton/dev-sourcr/blob/master/LICENSE-MIT"
     }
   ],
-  "main": "Gruntfile.js",
+  "main": "server/app.js",
+  "scripts": {
+    "run": "./node_modules/.bin/supervisor server/app.js",
+    "build": "npm install; ./node_modules/.bin/webpack",
+    "watch": "./node_modules/.bin/webpack --watch"
+  },
   "engines": {
     "node": ">= 0.8.0"
-  },
-  "scripts": {
-    "test": "grunt test"
   },
   "dependencies": {
     "cookie-parser": "^1.1.0",
@@ -34,18 +36,11 @@
     "fun-js": "*",
     "nunjucks": "^1.0.5",
     "q": ">=0.9.x",
-    "superagent": "^0.18.0",
-    "supervisor": "^0.6.0"
+    "superagent": "^0.18.0"
   },
   "devDependencies": {
-    "grunt-contrib-jshint": "~0.2.0",
-    "grunt-mocha-test": "~0.4.0",
-    "mocha": "1.9.x",
-    "chai": "1.5.x",
-    "sinon": "1.7.x",
-    "blanket": "1.1.x"
-  },
-  "peerDependencies": {
-    "grunt": "~0.4.0"
+    "supervisor": "^0.6.0",
+    "webpack": "~1.12.6",
+    "babel-loader": "~5.4.0"
   }
 }
