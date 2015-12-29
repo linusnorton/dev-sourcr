@@ -1,118 +1,72 @@
-import fun from "fun-js";
 
-$(function() {  
-    fun.import({ under: window });
+    
+$('[role=export]').submit(function () {
+    var data = [["name", "username", "email"].join(',')];
 
-    var sourcr = new Sourcr();
-
-    sourcr.fetch();
-
-    window.onscroll = function(ev) {
-        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-            sourcr.fetch();
-        }
-    };
-
-    $('[role=search]').submit(sourcr.reset);
-        
-});
-
-
-function Sourcr () {
-    /**
-     * Vars
-     */
-    var $table = $('[data-role=results]'),
-        $form = $('[role=search]'),
-        $language = $form.find('[name=language]'),
-        $location = $form.find('[name=location]'),
-        api = 'https://api.github.com/search/users',
-        token = '&access_token=' + window.githubToken,
-        sort = 'followers',
-        num = '10',
-        page = 1,
-        rowTemplateSource = $("#person-placeholder").html(),
-        detailsTemplateSource = $("#person-details").html(),
-        results = {};
-
-    $('[role=export]').submit(function () {
-
-        var data = [["name", "username", "email"].join(',')];
-
-        for (var i in results) {
-            var result = results[i];
-            data.push([result.name, result.login, result.email + ''].join(','));
-        }
-
-        var csvContent = "data:text/csv;charset=utf-8," + data.join("\n");
-        
-        
-        var encodedUri = encodeURI(csvContent);
-        window.open(encodedUri);
-
-        return false;
-    }); 
-
-
-
-    /**
-     * Private Functions
-     */
-    var renderTable = $table.append.bind($table),
-        concat = curry(join, ''),
-        rowTemplate = Handlebars.compile(rowTemplateSource),
-        personTemplate = Handlebars.compile(detailsTemplateSource),
-        buildRows = curry(map, rowTemplate),
-        getItems = pluck('items'),
-        storeResults = curry(map, storeResult),
-        renderResults = compose(renderTable, concat, buildRows, storeResults, getItems),
-        fetchPeopleDetails = (people) => people.forEach(fetchPersonDetails),
-        fetchMoreDetails = compose(fetchPeopleDetails, getItems);
-
-    function fetchPersonDetails (person) {
-        $.get('https://api.github.com/users/' + person.login + '?' + token, function (data) {
-            if (data.blog && data.blog.indexOf('http') === -1) {
-                data.blog = 'http://' + data.blog;
-            }
-
-            $table.find('[data-id=' + person.login + ']').html(personTemplate(data));
-            results[person.login].name = data.name;
-            results[person.login].email = data.email;
-        });
+    for (var i in results) {
+        var result = results[i];
+        data.push([result.name, result.login, result.email + ''].join(','));
     }
 
-    function storeResult (person) {
-        results[person.login] = person;
+    var csvContent = "data:text/csv;charset=utf-8," + data.join("\n");
+    
+    
+    var encodedUri = encodeURI(csvContent);
+    window.open(encodedUri);
 
-        return person;
-    }
+    return false;
+}); 
 
-    function getQuery () {
-        return 'type:user language:' + $language.val() + ' location:' + $location.val();        
-    }
+const app = (state = {}, action) => {
 
-    /**
-     * Public functions
-     */
-    function fetch () {
-        var url = api + '?q=' + getQuery() + '&sort=' + sort + '&per_page=' + num + '&page=' + page++ + token;
+  let query = form(state.query, action);
+  let results = resultsList(state.resultsList, action);
 
-        $.get(encodeURI(url), function (data) {
-            renderResults(data);
-            fetchMoreDetails(data);
-        });
-    }
+  switch (action) {
+    case "SEARCH": return ;
+    case "NEXT_PAGE": return ;
+    case "REQUEST_USER_DETAILS": return;
+    default: return state;
+  }
 
-    function reset () {
-        page = 1;
-        results = {};
-        $table.html('');
-        fetch();
+};
 
-        return false;
-    }
+const form = (state = { language: "JavaScript", location: "London"}, action) => {
 
-    this.fetch = fetch;
-    this.reset = reset;
+}
 
+const resultsList = (state = [], action) => {
+
+}
+
+const store = createStore(app);
+
+<SearchForm onSubmit={app({ type: "SEARCH", language: this.state.langage, location: this.state.location })} />
+<DeveloperList onScroll={app({ type: "NEXT_PAGE" })}>
+  <Developer onRender={app({ type: "GET_USER_DETAILS", id: this.props.id })} />
+</DeveloperList>
+
+
+const DeveloperList = ({ developers }) => (
+  <table>
+    <tbody>
+      { developers.map( (dev) => {
+        <Developer key={dev.login} onNeedMoreDetails={app} {...developer} />
+      })}
+    </tbody>
+  </table>
+);
+
+const Developer = (login, avatar_url, html_url, onNeedMoreDetails, details = null) => {
+  if (details === null) {
+    onNeedMoreDetails({ type: "REQUEST_USER_DETAILS", id: login });
+  }
+
+  return (
+    <tr><td>{login}</td></tr>;
+  );
+}
+
+const SearchForm = (onSubmit, location, language) => {
+  <form 
 }

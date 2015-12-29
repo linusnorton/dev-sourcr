@@ -48,9 +48,23 @@
 }
 
 .blinking {
-  animation: blinker 2s linear infinite;
+    animation: blinker 2s linear infinite;
 }
 
 @keyframes blinker {  
-  50% { opacity: 0.0; }
+    50% { opacity: 0.0; }
 }
+
+.developer .image { 
+    width: 150px; 
+    padding: 5px 0; 
+}
+
+.developer img {
+    width: 140px;
+}
+
+.developer .details {
+    vertical-align: top;
+}
+

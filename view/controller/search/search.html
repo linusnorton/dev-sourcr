@@ -1,68 +1,11 @@
 {% extends "common/base.html" %}
 
 {% block content %}
-  <nav class="navbar navbar-default navbar-fixed-top " role="navigation">
-  <div class="container">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">Search</a>
-      </div>
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <form style="margin-left: 50px;" class="navbar-form navbar-left" role="search">
-          <div class="form-group">
-            <label for="language">Find</label>
-            <input type="text" class="form-control" id="language" name="language" data-input="language" value="JavaScript"/>
-            <label for="location">developers in</label>
-            <input type="text" class="form-control" id="location" name="location" data-input="location" value="London"/>
-          </div>
-          <button type="submit" class="btn btn-primary">Search</button>
-        </form>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="/sign-out">Sign out</a></li>
-        </ul>
-        <form class="navbar-form navbar-right" role="export">
-          <button type="submit" class="btn btn-danger">Export</button>
-        </form>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </div>
-  </nav>
-
-
-  <div class="container">
-    <br/><br/>
-    <br/><br/>
-    <table class="table table-striped" data-role="results"></table>
-  </div>
+  <DevSourcr githubToken="{{token}}" />
 {% endblock %}
 
 {% block script %}
   {{ super() }}
   <script>window.githubToken = "{{token}}"; </script>
-  <script src="/lib/handlebars.js"> </script>
-  <script src="/js/main.min.js"> </script>
-  {% raw %}
-  <script id="person-placeholder" type="text/x-handlebars-template">
-    <tr>
-      <td style="width: 150px; padding: 5px 0 "><a href="{{html_url}}"><img width="140" src="{{avatar_url}}"/></a></td>
-      <td style="vertical-align: top" data-id="{{login}}">
-        <a href="{{html_url}}">{{login}}</a><br/>
-        Fetching details...
-      </td>
-    </tr>
-  </script>
-  <script id="person-details" type="text/x-handlebars-template">
-      <h3>{{name}} (<a href="{{html_url}}">{{login}}</a>)</h3>
-      {{#if company}}Works at: {{company}}<br/>{{/if}}
-      {{#if email}}Email: <a href="mailto:{{email}}">{{email}}</a><br/>{{/if}} 
-      {{#if blog}}Website: <a href="{{blog}}">{{blog}}</a>{{/if}} 
-  </script>
-  {% endraw %}
+  <script src="/js/main.min.js"> </script>  
 {% endblock %}
