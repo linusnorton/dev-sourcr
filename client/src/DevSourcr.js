@@ -21,10 +21,6 @@ export default class DevSourcr extends Component {
     this.github = new GitHub(http, props.githubToken);
   }
 
-  handleResults(results) {
-    this.setState({ developers: results });
-  }
-
   export(e) {
     e.preventDefault();
 
@@ -35,6 +31,26 @@ export default class DevSourcr extends Component {
     }
 
     window.open(encodeURI("data:text/csv;charset=utf-8," + content));
+  }
+
+  onUpdate(results) {
+    let developers = new OrderedMap(results);
+
+    for (let [login, developer] of developers) {
+      if (typeof developer.name === 'undefined') {
+        this.github.getUserDetails(login).then(::this.onUpdate);
+      }
+    }
+
+    this.setState({
+      developers: this.state.developers.mergeDeep(developers)
+    });
+  }
+
+  onClear() {
+    this.setState({
+      developers: new OrderedMap()
+    });
   }
 
   render() {
@@ -53,11 +69,11 @@ export default class DevSourcr extends Component {
                 <a className="navbar-brand" href="#">Search</a>
               </div>
               <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <SearchForm onResults={this.handleResults.bind(this)} github={this.github} />
+                <SearchForm onClear={::this.onClear} onUpdate={::this.onUpdate} github={this.github} />
                 <ul className="nav navbar-nav navbar-right">
                   <li><a href="/sign-out">Sign out</a></li>
                 </ul>
-                <form className="navbar-form navbar-right" onSubmit={this.export.bind(this)}>
+                <form className="navbar-form navbar-right" onSubmit={::this.export}>
                   <button type="submit" className="btn btn-danger">Export</button>
                 </form>
               </div>
@@ -65,7 +81,7 @@ export default class DevSourcr extends Component {
           </div>
         </nav>
         <div className="container">
-          <DeveloperList github={this.github} developers={this.state.developers}/>
+          <DeveloperList developers={this.state.developers}/>
         </div>
       </div>
     );

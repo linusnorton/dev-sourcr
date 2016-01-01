@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Developer from './Developer';
 
-export default function DeveloperList({github, developers}) {
+export default function DeveloperList({ developers }) {
 
   let developerComponents = developers.map(developer =>
-    <Developer key={developer.login} github={github} {...developer} />
+    <Developer key={developer.login} {...developer} />
   );
 
   return (

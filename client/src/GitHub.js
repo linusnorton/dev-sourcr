@@ -21,7 +21,18 @@ export default class GitHub {
   }
 
   getUserDetails(username) {
-    return this.http.get(`${this.endpoints.user}${username}?${this.token}`);
+    return this.http.get(`${this.endpoints.user}${username}?${this.token}`)
+               .then(response => this.extractUserDetails(username, response));
+  }
+
+  extractUserDetails(username, response) {
+    let data = response.body;
+
+    if (data.blog && data.blog.indexOf('http') === -1) {
+        data.blog = 'http://' + data.blog;
+    }
+
+    return { [username]: data };
   }
 
 }

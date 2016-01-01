@@ -6,14 +6,14 @@ import polyfill from "babel-polyfill";
 export default class SearchForm extends Component {
 
   static propTypes = {
-    onResults: React.PropTypes.func.isRequired,
+    onUpdate: React.PropTypes.func.isRequired,
+    onClear: React.PropTypes.func.isRequired,
     github: React.PropTypes.object.isRequired
   };
 
   state = {
     language: "JavaScript",
     location: "London",
-    developers: new OrderedMap(),
     page: 1
   };
 
@@ -41,18 +41,14 @@ export default class SearchForm extends Component {
       this.state.page
     );
 
-    let developers = this.state.developers;
+    let developers = {};
 
     for (let person of response.body.items) {
-      developers = developers.set(person.login, person);
+      developers[person.login] = person;
     }
 
-    this.setState({
-      developers: developers,
-      page: this.state.page + 1
-    });
-
-    this.props.onResults(developers);
+    this.props.onUpdate(developers);
+    this.setState({ page: this.state.page + 1 });
   }
 
   handleLocationChange(e) {
@@ -63,25 +59,21 @@ export default class SearchForm extends Component {
     this.setState({ language: e.target.value });
   }
 
-  handleSubmit(e) {
+  onSubmit(e) {
     e.preventDefault();
-
-    this.setState({
-      developers: new OrderedMap(),
-      page: 1
-    });
-
+    this.setState({ page: 1 });
+    this.props.onClear();
     this.nextPage();
   }
 
   render() {
     return (
-      <form className="navbar-form navbar-left" onSubmit={this.handleSubmit.bind(this)}>
+      <form className="navbar-form navbar-left" onSubmit={::this.onSubmit}>
         <div className="form-group">
           <label htmlFor="language">Find</label>
-          <input type="text" className="form-control" id="language" name="language" onChange={this.handleLanguageChange.bind(this)} value={this.state.language}/>
+          <input type="text" className="form-control" id="language" name="language" onChange={::this.handleLanguageChange} value={this.state.language}/>
           <label htmlFor="location">developers in</label>
-          <input type="text" className="form-control" id="location" name="location" onChange={this.handleLocationChange.bind(this)} value={this.state.location}/>
+          <input type="text" className="form-control" id="location" name="location" onChange={::this.handleLocationChange} value={this.state.location}/>
         </div>
         <button type="submit" className="btn btn-primary">Search</button>
       </form>

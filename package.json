@@ -43,7 +43,9 @@
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
     "superagent": "~1.6.1",
-    "superagent-bluebird-promise": "~2.1.1"
+    "superagent-bluebird-promise": "~2.1.1",
+    "babel-plugin-syntax-function-bind": "~6.3.13",
+    "babel-plugin-transform-function-bind": "~6.3.13"
   },
   "devDependencies": {
     "babel-loader": "~6.1.0",
