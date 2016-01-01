@@ -1,11 +1,11 @@
 {% extends "common/base.html" %}
 
 {% block content %}
-  <DevSourcr githubToken="{{token}}" />
+  <div id="react-root" />
 {% endblock %}
 
 {% block script %}
   {{ super() }}
   <script>window.githubToken = "{{token}}"; </script>
-  <script src="/js/main.min.js"> </script>  
+  <script src="/js/main.min.js"> </script>
 {% endblock %}

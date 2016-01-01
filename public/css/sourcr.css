@@ -1,7 +1,7 @@
 .outlined {
     letter-spacing: 3px;
     text-shadow:
-     -1px -1px 6px #2F3B5D,  
+     -1px -1px 6px #2F3B5D,
       1px -1px 6px #2F3B5D,
      -1px  1px 6px #2F3B5D,
       1px  1px 6px #2F3B5D;
@@ -33,7 +33,7 @@
 }
 
 .main-background {
-    background-image: url(/img/bg.jpg); 
+    background-image: url(/img/bg.jpg);
     background-size: cover;
 }
 
@@ -51,13 +51,13 @@
     animation: blinker 2s linear infinite;
 }
 
-@keyframes blinker {  
+@keyframes blinker {
     50% { opacity: 0.0; }
 }
 
-.developer .image { 
-    width: 150px; 
-    padding: 5px 0; 
+.developer .image {
+    width: 150px;
+    padding: 5px 0;
 }
 
 .developer img {
@@ -68,3 +68,6 @@
     vertical-align: top;
 }
 
+form.navbar-form {
+    margin-left: 50px;
+}
