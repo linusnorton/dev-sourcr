@@ -68,6 +68,22 @@
     vertical-align: top;
 }
 
+.developer p {
+    margin-bottom: 0px;
+}
+
+.developer h3 {
+    margin-top: 0;
+}
+
 form.navbar-form {
     margin-left: 50px;
+}
+
+.developer-list {
+    margin-top: 70px;
+}
+
+.form-control {
+  margin: 0 7px;
 }

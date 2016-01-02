@@ -60,19 +60,13 @@ export default class DevSourcr extends Component {
           <div className="container">
             <div className="container-fluid">
               <div className="navbar-header">
-                <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                  <span className="sr-only">Toggle navigation</span>
-                  <span className="icon-bar"></span>
-                  <span className="icon-bar"></span>
-                  <span className="icon-bar"></span>
-                </button>
                 <a className="navbar-brand" href="#">Search</a>
               </div>
-              <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <SearchForm onClear={::this.onClear} onUpdate={::this.onUpdate} github={this.github} />
                 <ul className="nav navbar-nav navbar-right">
                   <li><a href="/sign-out">Sign out</a></li>
                 </ul>
+              <div className="collapse navbar-collapse">
                 <form className="navbar-form navbar-right" onSubmit={::this.export}>
                   <button type="submit" className="btn btn-danger">Export</button>
                 </form>

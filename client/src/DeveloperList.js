@@ -8,7 +8,7 @@ export default function DeveloperList({ developers }) {
   );
 
   return (
-    <table className="table table-striped">
+    <table className="table table-striped developer-list">
       <tbody>{developerComponents.toList()}</tbody>
     </table>
   );
